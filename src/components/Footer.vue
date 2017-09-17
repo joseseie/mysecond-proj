@@ -1,15 +1,27 @@
 <template>
   <footer>
-    <p>{{copyright}}</p>
+    <p>{{copyright}} {{title}}</p>
   </footer>
 </template>
 
 <script>
+import {bus} from '../main';
+
 export default {
+  props:{
+    title: {
+      type: String
+    }
+  },
   data () {
     return {
       copyright: 'copyright 2017 Vue JS'
     }
+  },
+  created(){
+    bus.$on('titleChenged',(data)=>{
+      this.title = data;
+    })
   }
 }
 </script>

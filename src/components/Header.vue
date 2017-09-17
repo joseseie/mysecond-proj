@@ -1,14 +1,27 @@
 <template>
   <header>
-    <h1>{{title}}</h1>
+    <h1 v-on:click="changeTitle">{{title}}</h1>
   </header>
 </template>
 
 <script>
+import {bus} from '../main';
 export default {
+  props:{
+    title:{
+      type: String
+    }
+  },
   data () {
     return {
-      title: 'Jose Seie Vue Header'
+      titleH: 'Jose Seie Vue no Header'
+    }
+  },
+  methods:{
+    changeTitle: function(){
+      //this.$emit('changeTitle','Vue Wizard'); //Evento a ser acionado, e pode ser tratado no App.vue
+      this.title = 'Vue Wizard';
+      bus.$emit('titleChenged','Vue Wizard');
     }
   }
 }

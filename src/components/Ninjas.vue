@@ -6,23 +6,52 @@
       <h3 v-show="ninja.show">{{ninja.speciality}}</h3>
     </li>
     </ul>
+    <button v-on:click="deleteNinja">Delete Ninja</button>
   </div>
 </template>
 
 <script>
+//Tipos de dados no Vue: Primitive type: String, boolean, Number
+//                        Reference Type: Objects e Arrays
 export default {
+  // props:['ninjas'], //Este é usando para indicar as propriedades que temos de receber
+  //receber com validacao do tipo
+  props:{
+    ninjas: {
+      type:Array,
+      required: true
+    }
+  },
   data () {
     return {
-      ninjas: [
-        {name: 'Hose',speciality: 'Jose Seie',show: false},
-        {name: 'Jose Seie',speciality: 'Teste Vuw',show: false},
-        {name: 'Mario Tanjo',speciality: 'Click Events',show: false},
-        {name: 'Tango',speciality: 'Conditionals',show: false},
-        {name: 'Kami',speciality: 'WebPack',show: false},
-        {name: 'Yoshi',speciality: 'Data Diggin',show: false},
-      ]
+      
     }
+  },
+  methods:{
+    deleteNinja: function(){
+      this.ninjas.pop();
+    }
+  },
+  //lifecycle hookss
+  beforeCreate(){
+    alert('beforeCreate');
+  },
+  created(){
+    alert('created');
+  },
+  beforeMount(){
+    alert('beforeMount');
+  },
+  mounted(){
+    alert('mounted');
+  },
+  beforeUpdate(){
+    alert('beforeUpdate');
+  },
+  updated(){
+    alert('updated');
   }
+
 }
 </script>
 
